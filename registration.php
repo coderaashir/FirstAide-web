@@ -7,6 +7,9 @@
   <title>FirstAide</title>
   <link rel="stylesheet" type="text/css" href="css files/loginAndRegistration.css">
   <link rel="stylesheet" href="css files/sweetalert.css">
+  <link rel="stylesheet" href="css files/passc.css">
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="javascripts/passchecker.js"></script> 
   <form method="POST" onsubmit="return validate()" /><!--validations for form fields entered js file- validation-v12.js-->
 </head>
 <body>
@@ -23,13 +26,21 @@
          <th class="text">Username:</th>
          <td><input class="input-box" type="text" id="uname" name="uname" placeholder="xyz123" required/></td>
        </tr>
+        
         <tr>
          <th class="text">Password:</th>
-         <td><input class="input-box" type="password" id="password" name="password" required/></td>
-       </tr>
+         <td>
+          <input class="input-box" type="password" id="password" name="password" required/> 
+            <div id = "pbar1"><div id="pbar"></div></div> 
+            <th class = "text"> 
+            <div id = "pass-text"></div>
+          </th>
+         </td>
+        </tr>
         <tr>
          <th class="text">Host Country:</th>
          <td><input class="input-box" type="text" id="host_country" name="host_country" placeholder="India" required/></td>
+       
        </tr>
        <tr>
          <th class="text">Email:</th>
@@ -67,7 +78,6 @@
       $sql="CALL dupemail('$_POST[email]')";
       $result = mysqli_query($connection,$sql);
       $connection -> next_result(); //used when there are multiple procedure calls, use after ecah procedure call
-
       if(mysqli_num_rows($result)>=1) //check if it is a duplicate email
       {
          echo "<script type='text/javascript'>salert('Oops','User with this email already exists','error');</script>";
@@ -76,7 +86,6 @@
       {
         $email = $_POST['email'];
         $newUser="CALL registration('$_POST[email]','$_POST[uname]','$_POST[password]','$_POST[host_country]')"; //inserts into the user table
-
         if(mysqli_query($connection,$newUser))
         {//if successfully added user then add comrades of user with null phone numbers
             $connection->next_result();
