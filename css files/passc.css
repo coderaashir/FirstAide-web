@@ -1,0 +1,12 @@
+#pass-text{
+    padding-top: 25px; padding-left: 10px; 
+  }
+  #pbar1{
+    background:#CCC;width:300px;height:15px;margin-top:10px; padding: 1px;    
+  }
+  #pbar{
+    margin:0px;
+    width:0px;
+    background:#02845F;
+    height: 100%;
+  }
